@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  backend:
+    build: .
+    container_name: backend
+  worker:
+    build:
+      context: .
+      dockerfile: worker/Dockerfile
+    depends_on:
+      - backend
+      - redis
+    container_name: worker
+  redis:
+    image: redis:7
+    container_name: redis
