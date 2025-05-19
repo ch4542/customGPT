@@ -1,1 +1,10 @@
+from celery import Celery
 
+app = Celery('example', broker='redis://redis:6379/0')
+
+@app.task
+def add(x, y):
+    return x + y
+
+if __name__ == '__main__':
+    print('Backend ready')
